@@ -8,5 +8,5 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync(), importProvidersFrom(provideFirebaseApp(() => initializeApp({"projectId":"retreat-radar","appId":"1:271718171858:web:c7f6de6bd7b62ff575990b","storageBucket":"retreat-radar.appspot.com","apiKey":"AIzaSyDQNrD11pGYvPxqELyI97areXrB8az2aDA","authDomain":"retreat-radar.firebaseapp.com","messagingSenderId":"271718171858","measurementId":"G-9M0EDD1D1Y"}))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore()))]
+  providers: [provideRouter(routes), provideAnimationsAsync(), importProvidersFrom(provideFirebaseApp(() => initializeApp({ "projectId": process.env["projectID"], "appId": process.env["appId"], "storageBucket": process.env["storageBucket"], "apiKey": process.env["apiKey"], "authDomain": process.env["authDomain"], "messagingSenderId": process.env["messagingSenderId"], "measurementId": process.env["measurementId"] }))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore()))]
 };
