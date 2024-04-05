@@ -90,6 +90,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "retreat-radar:build:production",
+              "serveTarget": "retreat-radar:serve:production"
+            },
+            "development": {
+              "buildTarget": "retreat-radar:build:development",
+              "serveTarget": "retreat-radar:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

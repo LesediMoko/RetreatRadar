@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "retreat-radar": {
+      "hosting": {
+        "retreat-radar": [
+          "retreat-radar"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "retreat-radar"
+  }
+}
