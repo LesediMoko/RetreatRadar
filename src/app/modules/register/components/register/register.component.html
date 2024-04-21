@@ -86,7 +86,7 @@
 
     <label class="input input-bordered flex items-center gap-2" for="username"
       >Username
-      <input type="text" id="username" class="grow" [formControl]="usernameFormControl" />
+      <input type="text" id="username" class="grow" [formControl]="usernameFormControl" formControlName="username" />
       <div
         class="tooltip before:-translate-y-3 relative before:text-left before:absolute before:right-0 before:left-auto before:w-max before:max-w-50 before:break-words before:whitespace-pre-wrap"
         data-tip="Must have at least 3 characters"
@@ -107,6 +107,9 @@
       </p>
       <p class="text-sm text-vermilion-400" *ngIf="usernameFormControl.hasError('minlength')">
         Username is <strong>less than 3 characters</strong>
+      </p>
+      <p class="text-sm text-vermilion-400" *ngIf="registerForm.get('username')?.errors?.['usernameTaken']">
+        Username is <strong>taken</strong>
       </p>
     </ng-container>
     <label class="input input-bordered flex items-center gap-2" for="password"

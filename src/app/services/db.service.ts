@@ -8,7 +8,7 @@ import {
   UserCredential,
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
-import { Observable, from } from 'rxjs';
+import { Observable, Subject, from, fromEvent } from 'rxjs';
 import { IUser } from '../modules/common/types/app-types';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import {
@@ -24,6 +24,7 @@ import {
 import { FirestoreCollections } from '../modules/utils/firestore-collections';
 import { initializeApp } from '@firebase/app';
 import { environment } from '../../environments/environment.development';
+import { debounceTime, distinctUntilChanged, map, switchMap, debounce } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -68,5 +69,20 @@ export class DbService {
 
   googleLogin(): Observable<UserCredential> {
     return from(signInWithPopup(this.afAuth, new GoogleAuthProvider()));
+  }
+
+  findProfileByUsername(username: string): Observable<IUser | null> {
+    const profilesRef = collection(this.db, FirestoreCollections.PROFILES);
+    const usernameQuery = query(profilesRef, where('username', '==', username));
+    return from(getDocs(usernameQuery)).pipe(
+      map(querySnapshot => {
+        if (querySnapshot.empty) {
+          return null;
+        } else {
+          const profile = querySnapshot.docs[0].data();
+          return profile as IUser;
+        }
+      }),
+    );
   }
 }

@@ -9,6 +9,7 @@ import {
   AbstractControl,
   ValidationErrors,
   FormBuilder,
+  AsyncValidatorFn,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,6 +24,8 @@ import { jamGithub, jamGoogle } from '@ng-icons/jam-icons';
 import { RouterLink } from '@angular/router';
 import { selectIsAuthenticated, selectUserID, selectUserProfile } from '../../../../store/Selectors/user.selector';
 import { IUser } from '../../../common/types/app-types';
+import { DbService } from '../../../../services/db.service';
+import { Observable, catchError, debounce, debounceTime, first, map, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -55,6 +58,17 @@ export class RegisterComponent {
     };
   }
 
+  usernameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return control.valueChanges.pipe(
+        debounceTime(300),
+        switchMap(value => this.dbService.findProfileByUsername(value)),
+        map(user => (user ? { usernameTaken: true } : null)),
+        first(),
+      );
+    };
+  }
+
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   nameFormControl = new FormControl('', [Validators.required, Validators.minLength(2)]);
   surnameFormControl = new FormControl('', [Validators.required, Validators.minLength(2)]);
@@ -63,7 +77,7 @@ export class RegisterComponent {
     Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\S)(?!.* ).{8,}$/),
   ]);
   passwordConfirmFormControl = new FormControl('', [Validators.required, this.passwordMatch()]);
-  usernameFormControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  usernameFormControl = new FormControl('', [Validators.required, Validators.minLength(3)], [this.usernameValidator()]);
   registerForm: FormGroup;
 
   userID$ = this.store.select(selectUserID);
@@ -73,6 +87,7 @@ export class RegisterComponent {
   constructor(
     private store: Store<UserState>,
     private formB: FormBuilder,
+    private dbService: DbService,
   ) {
     this.registerForm = this.formB.group({
       email: this.emailFormControl,
