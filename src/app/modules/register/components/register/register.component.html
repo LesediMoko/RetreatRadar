@@ -1,0 +1,203 @@
+<div class="flex flex-col gap-4 bg-ivory-500 m-0 w-svw h-svh overflow-x-hidden items-center">
+  <app-rrtitle class="mt-16 mb-10"></app-rrtitle>
+  <h2 class="text-3xl font-semibold">Welcome Back!</h2>
+  <p class="font-medium text-lg mb-14">where your journey begins</p>
+
+  <form class="flex flex-col gap-8 w-5/6" [formGroup]="registerForm">
+    <label class="input input-bordered flex items-center gap-2" for="name"
+      >Name
+
+      <input type="text" id="name" class="grow bg-none p-0 shadow-none no-underline" [formControl]="nameFormControl" />
+      <div
+        class="tooltip before:-translate-y-3 relative before:text-left before:absolute before:right-0 before:left-auto before:w-max before:max-w-50 before:break-words before:whitespace-pre-wrap"
+        data-tip="Must have at least 2 characters"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+    </label>
+
+    <ng-container *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)">
+      <p class="text-xs text-vermilion-400" *ngIf="nameFormControl.hasError('required')">
+        Name is <strong>required</strong>
+      </p>
+      <p class="text-xs text-vermilion-400" *ngIf="nameFormControl.hasError('minlength')">
+        Name is less than <strong>2 characters</strong>
+      </p>
+    </ng-container>
+
+    <label class="input input-bordered flex items-center gap-2" for="surname"
+      >Surname
+      <input type="text" id="surname" class="grow" [formControl]="surnameFormControl" />
+      <div
+        class="tooltip before:-translate-y-3 relative before:text-left before:absolute before:right-0 before:left-auto before:w-max before:max-w-50 before:break-words before:whitespace-pre-wrap"
+        data-tip="Must have at least 2 characters"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+    </label>
+    <ng-container *ngIf="surnameFormControl.invalid && (surnameFormControl.dirty || surnameFormControl.touched)">
+      <p class="text-xs text-vermilion-400" *ngIf="surnameFormControl.hasError('required')">
+        Surname is <strong>required</strong>
+      </p>
+      <p class="text-xs text-vermilion-400" *ngIf="surnameFormControl.hasError('minlength')">
+        Surname is <strong>less than 2 characters</strong>
+      </p>
+    </ng-container>
+
+    <label class="input input-bordered flex items-center gap-2" for="email"
+      >Email
+      <input type="email" id="email" class="grow" [formControl]="emailFormControl" />
+      <div
+        class="tooltip before:-translate-y-3 relative before:text-left before:absolute before:right-0 before:left-auto before:w-max before:max-w-50 before:break-words before:whitespace-pre-wrap"
+        data-tip="Must be a valid email address i.e. johndoe@gmail.com"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+    </label>
+    <ng-container *ngIf="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)">
+      <p class="text-sm text-vermilion-400" *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </p>
+      <p class="text-sm text-vermilion-400" *ngIf="emailFormControl.hasError('email')">
+        Email is <strong>invalid</strong>
+      </p>
+    </ng-container>
+
+    <label class="input input-bordered flex items-center gap-2" for="username"
+      >Username
+      <input type="text" id="username" class="grow" [formControl]="usernameFormControl" formControlName="username" />
+      <div
+        class="tooltip before:-translate-y-3 relative before:text-left before:absolute before:right-0 before:left-auto before:w-max before:max-w-50 before:break-words before:whitespace-pre-wrap"
+        data-tip="Must have at least 3 characters"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+    </label>
+    <ng-container *ngIf="usernameFormControl.invalid && (usernameFormControl.dirty || usernameFormControl.touched)">
+      <p class="text-sm text-vermilion-400" *ngIf="usernameFormControl.hasError('required')">
+        Username is <strong>required</strong>
+      </p>
+      <p class="text-sm text-vermilion-400" *ngIf="usernameFormControl.hasError('minlength')">
+        Username is <strong>less than 3 characters</strong>
+      </p>
+      <p class="text-sm text-vermilion-400" *ngIf="registerForm.get('username')?.errors?.['usernameTaken']">
+        Username is <strong>taken</strong>
+      </p>
+    </ng-container>
+    <label class="input input-bordered flex items-center gap-2" for="password"
+      >Password
+      <input
+        type="password"
+        id="passwordFormControl"
+        class="grow"
+        [formControl]="passwordFormControl"
+        formControlName="password"
+      />
+      <div
+        class="tooltip before:-translate-y-3 relative before:text-left before:absolute before:right-0 before:left-auto before:w-max before:max-w-50 before:break-words before:whitespace-pre-wrap"
+        data-tip="Must have at least 8 characters&#010;Must have at least 1 uppercase letter&#010;Must have at least 1 lowercase letter&#010;Must have at least 1 number&#010;Must have at least 1 special"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+    </label>
+    <ng-container *ngIf="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched)">
+      <p class="text-sm text-vermilion-400" *ngIf="passwordFormControl.hasError('required')">
+        Password is <strong>required</strong>
+      </p>
+      <p class="text-sm text-vermilion-400" *ngIf="passwordFormControl.hasError('pattern')">
+        Password is <strong>invalid</strong>
+      </p>
+    </ng-container>
+
+    <label class="input input-bordered flex items-center gap-2" for="confirmPassword"
+      >Confirm Password
+      <input
+        type="password"
+        id="confirmPassword"
+        class="grow"
+        [formControl]="passwordConfirmFormControl"
+        formControlName="passwordConfirm"
+      />
+      <div
+        class="tooltip before:-translate-y-3 relative before:text-left before:absolute before:right-0 before:left-auto before:w-max before:max-w-50 before:break-words before:whitespace-pre-wrap"
+        data-tip="Must match the password above"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+    </label>
+    <ng-container
+      *ngIf="
+        passwordConfirmFormControl.invalid && (passwordConfirmFormControl.dirty || passwordConfirmFormControl.touched)
+      "
+    >
+      <p class="text-sm text-vermilion-400" *ngIf="passwordConfirmFormControl.hasError('required')">
+        Password confirmation is <strong>required</strong>
+      </p>
+      <p class="text-sm text-vermilion-400" *ngIf="registerForm.get('passwordConfirm')?.errors?.['passwordMatch']">
+        Password <strong>does not match</strong>
+      </p>
+    </ng-container>
+
+    <button
+      class="w-full h-14 btn bg-midnight_green-400 text-caribbean_current-900 text-lg mb-10"
+      [disabled]="!registerForm.valid"
+      (click)="signUpUser()"
+    >
+      Sign Up
+    </button>
+  </form>
+  <div class="divider mb-8">Or sign up with</div>
+  <div class="flex flex-row gap-2 justify-between w-full">
+    <a role="button" class="w-5/12 h-14 btn bg-vermilion text-neutral-50 text-lg ml-4" (click)="signUpGoogle()">
+      <ng-icon name="jamGoogle"></ng-icon>Google
+    </a>
+    <a role="button" class="w-5/12 h-14 btn bg-neutral-950 text-neutral-50 text-lg mr-4" (click)="signUpGit()">
+      <ng-icon name="jamGithub"></ng-icon>Github
+    </a>
+  </div>
+  <p class="mt-10 mb-5">
+    Already a member? <a routerLink="/login" class="text-midnight_green-500 font-semibold">Login back in</a>
+  </p>
+</div>
