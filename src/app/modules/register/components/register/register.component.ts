@@ -129,6 +129,4 @@ export class RegisterComponent {
       }),
     );
   }
-
-  ngOnInit(): void {}
 }

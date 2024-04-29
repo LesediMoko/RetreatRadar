@@ -1,16 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IUser } from '../../modules/common/types/app-types';
 
-// export const login = createAction('[User] Login');
-// export const loginSuccess = createAction('[User] LoginSuccess', props<{ email: string; password: string }>());
-
-// export const logout = createAction('[User] Logout');
-
-// export const register = createAction('[User] Register');
-// export const registerSuccess = createAction('[User] RegisterSuccess', props<{ email: string; password: string }>());
-
-// export const setSelectedUser = createAction('[User] SetSelectedUser', props<{ user: IUser }>());
-
 export const register = createAction(
   '[User] Register',
   props<{ userProfile: IUser; password: string; email: string }>(),
