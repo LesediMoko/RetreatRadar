@@ -1,0 +1,20 @@
+@if (events.length == 0) {
+  <p class="text-xl font-semibold place-self-center">No Events Currently Available</p>
+}
+
+@if (events.length > 0) {
+  <div class="carousel rounded-box flex flex-row overflow-x-scroll gap-4">
+    @for (eventItem of events; track eventItem.id) {
+      <div
+        class="carousel-item w-2/3 h-80 rounded-2xl bg-center bg-cover cursor-pointer"
+        style="background-image: url({{eventItem.photo}})"
+      >
+        <div
+          class="content flex items-center justify-center h-full w-full text-neutral-50 font-semibold text-3xl z-10 relative opacity-0 hover:backdrop-blur-sm hover:opacity-100 hover:shadow-xl hover:shadow-midnight_green-100 transition-all duration-300"
+        >
+          {{ eventItem.name }}
+        </div>
+      </div>
+    }
+  </div>
+}
