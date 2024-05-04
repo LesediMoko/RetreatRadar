@@ -1,0 +1,164 @@
+<form class="w-full flex flex-col gap-6 rounded-md">
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text text-xl font-medium text-neutral-950">Title</span>
+    </div>
+    <input
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs bg-midnight_green-800 placeholder:text-neutral-700"
+    />
+  </label>
+
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text text-xl font-medium text-neutral-950">Cost</span>
+    </div>
+    <input
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs bg-midnight_green-800 placeholder:text-neutral-700"
+    />
+  </label>
+
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text text-xl font-medium text-neutral-950">Currency</span>
+    </div>
+    <select class="select w-full max-w-xs bg-midnight_green-800">
+      <option>ZAR</option>
+      <option>USD</option>
+      <option>GBP</option>
+    </select>
+  </label>
+
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text text-xl font-medium text-neutral-950">Start at</span>
+    </div>
+    <input
+      type="datetime-local"
+      id="event-time"
+      name="meeting-time"
+      value="2018-05-02T06:30"
+      min="2018-05-02T06:30"
+      class="bg-midnight_green-800 p-4 rounded-md text-md font-semibold"
+    />
+  </label>
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text text-xl font-medium text-neutral-950">End at</span>
+    </div>
+    <input
+      type="datetime-local"
+      id="event-time"
+      name="meeting-time"
+      value="2018-05-02T06:30"
+      min="2018-05-02T06:30"
+      class="bg-midnight_green-800 p-4 rounded-md text-md font-semibold"
+    />
+  </label>
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text text-xl font-medium text-neutral-950">Location</span>
+    </div>
+    <div class="flex flex-row gap-2">
+      <input
+        type="number"
+        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">°</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-800"
+      />
+      <p class="text-xl font-medium text-neutral-950">'</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-800"
+      />
+      <p class="text-xl font-medium text-neutral-950">''</p>
+      <select class="w-6 bg-midnight_green-800">
+        <option class="bg-caribbean_current-800">N</option>
+        <option>S</option>
+      </select>
+    </div>
+    <div class="flex flex-row gap-2 mt-2">
+      <input
+        type="number"
+        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">°</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">'</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">''</p>
+      <select class="w-6 bg-midnight_green-800">
+        <option>E</option>
+        <option>W</option>
+      </select>
+    </div>
+  </label>
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text text-xl font-medium text-neutral-950">End Location</span>
+      <span class="label-text text-md text-neutral-500 font-medium">(optional)</span>
+    </div>
+    <div class="flex flex-row gap-2">
+      <input
+        type="number"
+        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">°</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">'</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">''</p>
+      <select class="w-6 bg-midnight_green-800">
+        <option>N</option>
+        <option>S</option>
+      </select>
+    </div>
+    <div class="flex flex-row gap-2 mt-2">
+      <input
+        type="number"
+        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">°</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">'</p>
+      <input
+        type="text"
+        inputmode="numeric"
+        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
+      />
+      <p class="text-xl font-medium text-neutral-950">''</p>
+      <select class="w-6 bg-midnight_green-800">
+        <option>E</option>
+        <option>W</option>
+      </select>
+    </div>
+  </label>
+</form>
