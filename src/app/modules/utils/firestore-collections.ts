@@ -4,4 +4,5 @@ export enum FirestoreCollections {
   PROFILES = 'profiles',
   ITEMS = 'items',
   PREFERENCES = 'preferences',
+  EVENTS = 'events',
 }
