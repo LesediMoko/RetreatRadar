@@ -2,6 +2,7 @@ export interface IUser {
   name: string;
   surname: string;
   username: string;
+  avatar: string;
 }
 
 export interface ITrip {
@@ -19,11 +20,8 @@ export interface IItem {
   tags: string[];
   startTime: Date;
   endTime: Date;
-  costEstimate: number;
+  cost: number;
   currency: string;
-  startLocation: { lat: number; lon: number };
-  endLocation: { lat: number; lon: number };
-  notes: string;
 }
 
 export interface IPreferences {
@@ -38,6 +36,7 @@ export interface ProfileCollection {
   username: string;
   name: string;
   surname: string;
+  avatar: string;
 }
 
 export interface UsersCollection {
@@ -46,4 +45,18 @@ export interface UsersCollection {
   Created: Date;
   'Signed In': Date;
   'User UID': string;
+}
+
+export interface IEventItem {
+  id: string;
+  attendees: string[];
+  cost: number;
+  currency: string;
+  endTime: Date;
+  name: string;
+  startTime: Date;
+  tags: string[];
+  description: string;
+  location: string;
+  photo: string;
 }
