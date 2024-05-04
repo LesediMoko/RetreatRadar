@@ -9,6 +9,8 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { profileConverter } from '../../modules/utils/model-converters';
 import { getFirestore } from '@firebase/firestore';
 import { getApp } from '@firebase/app';
+import { defaultUserAvatar } from '../../modules/common/defaults/defaultUser';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UsersEffects {
@@ -16,6 +18,7 @@ export class UsersEffects {
     private actions$: Actions,
     private db: DbService,
     private nzNotify: NzNotificationService,
+    private router: Router,
   ) {}
 
   register$ = createEffect(() =>
@@ -104,6 +107,8 @@ export class UsersEffects {
               UserActions.loginSuccess({ uid: user.user.uid }),
               UserActions.fetchProfile({ uid: user.user.uid }),
             ];
+            this.router.navigate(['/app/home']);
+            console.log(user.user.uid);
             return from(actions);
           }),
           catchError(error => {
@@ -164,7 +169,10 @@ export class UsersEffects {
         this.db.fetchProfile(uid).pipe(
           map(profile => {
             if (profile.empty)
-              return UserActions.fetchProfileSuccess({ profile: { username: '', name: '', surname: '' } });
+              return UserActions.fetchProfileSuccess({
+                profile: { username: '', name: '', surname: '', avatar: defaultUserAvatar },
+              });
+
             return UserActions.fetchProfileSuccess({ profile: profile.docs[0].data() as IUser });
           }),
           catchError(error => {
