@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as UserActions from '../Actions/user.actions';
 
 export const initialUserState: UserState = {
-  currentUserProfile: null,
+  currentUserProfile: undefined,
   isAuthenticated: false,
   uid: null,
 };

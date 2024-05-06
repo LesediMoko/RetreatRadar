@@ -1,4 +1,4 @@
-import { IUser } from '../../modules/common/types/app-types';
+import { IEventItem, IUser } from '../../modules/common/types/app-types';
 
 export interface AppState {
   trips: TripsState;
@@ -9,12 +9,12 @@ export interface AppState {
 
 export interface TripsState {
   trips: Trip[];
-  selectedTripId: string | null;
+  selectedTrip: Trip | null;
 }
 
 export interface ItineraryItemsState {
   items: ItineraryItem[];
-  selectedItemId: string | null;
+  selectedItem: Trip | null;
 }
 
 export interface PreferencesState {
@@ -24,7 +24,12 @@ export interface PreferencesState {
 }
 
 export interface UserState {
-  currentUserProfile: IUser | null;
+  currentUserProfile?: IUser;
   isAuthenticated: boolean;
   uid: string | null;
+}
+
+export interface EventsState {
+  events: IEventItem[];
+  selectedEvent: IEventItem | null;
 }

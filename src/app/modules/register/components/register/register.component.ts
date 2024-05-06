@@ -26,6 +26,7 @@ import { selectIsAuthenticated, selectUserID, selectUserProfile } from '../../..
 import { IUser } from '../../../common/types/app-types';
 import { DbService } from '../../../../services/db.service';
 import { Observable, catchError, debounce, debounceTime, first, map, of, switchMap } from 'rxjs';
+import { defaultUserAvatar } from '../../../common/defaults/defaultUser';
 
 @Component({
   selector: 'app-register',
@@ -120,6 +121,7 @@ export class RegisterComponent {
       username: this.usernameFormControl.value,
       name: this.nameFormControl.value,
       surname: this.surnameFormControl.value,
+      avatar: defaultUserAvatar,
     };
     this.store.dispatch(
       register({

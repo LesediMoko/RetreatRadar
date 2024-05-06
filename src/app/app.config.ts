@@ -10,13 +10,20 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { UsersEffects } from './store/Effects/users.effects';
-import { retreatRadarStoreFeatureKey } from './store';
+import {
+  retreatRadarStoreTripsFeatureKey,
+  retreatRadarStoreUserFeatureKey,
+  retreatRadarStoreEventsFeatureKey,
+} from './store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { userReducer } from './store/Reducers/user.reducer';
 import { en_US, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
+import { tripsReducer } from './store/Reducers/trips.reducer';
+import { eventsReducer } from './store/Reducers/events.reducer';
+import { EventsEffects } from './store/Effects/events.effects';
 
 registerLocaleData(en);
 
@@ -42,8 +49,10 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(provideAuth(() => getAuth())),
     importProvidersFrom(provideFirestore(() => getFirestore())),
     provideStore(),
-    provideState({ name: retreatRadarStoreFeatureKey, reducer: userReducer }),
-    provideEffects(UsersEffects),
+    provideState({ name: retreatRadarStoreUserFeatureKey, reducer: userReducer }),
+    provideState({ name: retreatRadarStoreTripsFeatureKey, reducer: tripsReducer }),
+    provideState({ name: retreatRadarStoreEventsFeatureKey, reducer: eventsReducer }),
+    provideEffects(UsersEffects, EventsEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideNzI18n(en_US),
     importProvidersFrom(FormsModule),

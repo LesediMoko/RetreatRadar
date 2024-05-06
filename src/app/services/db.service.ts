@@ -51,7 +51,12 @@ export class DbService {
   }
 
   saveProfile(uid: string, profile: IUser) {
-    const documentInfo = { username: profile.username, name: profile.name, surname: profile.surname };
+    const documentInfo = {
+      username: profile.username,
+      name: profile.name,
+      surname: profile.surname,
+      avater: profile.avatar,
+    };
     return from(setDoc(doc(this.db, FirestoreCollections.PROFILES, uid), documentInfo));
   }
 
@@ -84,5 +89,11 @@ export class DbService {
         }
       }),
     );
+  }
+
+  fetchAllEvents(): Observable<QuerySnapshot<DocumentData>> {
+    const eventsRef = collection(this.db, FirestoreCollections.EVENTS);
+    const fetchQuery = query(eventsRef);
+    return from(getDocs(fetchQuery));
   }
 }
