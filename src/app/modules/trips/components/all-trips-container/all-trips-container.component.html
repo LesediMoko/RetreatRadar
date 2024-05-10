@@ -1,0 +1,1 @@
+<app-all-trips [allItemsList]="(allItemsList$ | async) ?? []" [allTripsList]="(allTripsList$ | async) ?? []" [selectedTrip]="(selectedTrip$ | async) ?? null" (onTripClick)="onClickSelectTrip($event)" (onTripViewClick)="onClickViewTrip($event)" (onTripDeleteClick)="onClickDeleteTrip($event)" [selectedCurrency]="(selectCurrency$ | async) ?? 'ZAR'"></app-all-trips>
