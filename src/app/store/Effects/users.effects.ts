@@ -110,7 +110,6 @@ export class UsersEffects {
               TripActions.loadTrips({ uid: user.user.uid }),
             ];
             this.router.navigate(['/app/home']);
-            console.log(user.user.uid);
             return from(actions);
           }),
           catchError(error => {

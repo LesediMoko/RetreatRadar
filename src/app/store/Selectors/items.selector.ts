@@ -27,7 +27,6 @@ export const selectItemsBySelectedTripId = createSelector(selectItemsFeature, st
 });
 
 export const selectSelectedItemsGroupedByDay = createSelector(selectItemsFeature, state => {
-  console.log(state.selectedTripId);
   const items = state.items.filter(item => item.tripId === state.viewingTripId);
   for (const item of items) {
     item.cost = item.cost * state.conversionRate;
@@ -43,7 +42,6 @@ export const selectSelectedItemsGroupedByDay = createSelector(selectItemsFeature
       items: itemAndDayArray.filter(item => item.startDateJS === day),
     };
   });
-  console.log(groupedItems);
   return groupedItems;
 });
 
@@ -52,7 +50,6 @@ export const selectSelctedItemsDaysList = createSelector(selectItemsFeature, sta
   const itemAndDayArray = items.map(item => {
     const startDateJS = convertFSTimestampToJSDate(item.startTime.seconds, item.startTime.nanoseconds);
     const dayMonth = getTripPanelMonthDay(startDateJS);
-    console.log(dayMonth);
     return { ...item, dayMonth };
   });
   const uniqueDays = [...new Set(itemAndDayArray.map(item => item.dayMonth))];

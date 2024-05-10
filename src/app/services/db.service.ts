@@ -107,7 +107,6 @@ export class DbService {
   }
 
   fetchTripItems(tripID: string | string[]): Observable<QuerySnapshot<DocumentData>> {
-    console.log('fetching items for trip: ', tripID);
     if (tripID instanceof Array) {
       const itemsRef = collection(this.db, FirestoreCollections.ITEMS);
       const fetchQuery = query(itemsRef, where('tripId', 'in', tripID));

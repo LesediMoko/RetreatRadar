@@ -41,7 +41,6 @@ export class ViewControllerComponent implements OnDestroy {
     const currencyOption = ($event.target as HTMLSelectElement).value;
     const currencyCode = currencyOption.split(' ')[1];
     this.selectedCurrencySubscription$ = this.selectedCurrency$.pipe(take(1)).subscribe(currency => {
-      console.log(`from: ${currency} to: ${currencyCode}`);
       this.itemStore.dispatch(fetchConversionRate({ currencyFrom: currency, currencyTo: currencyCode }));
     });
     this.itemStore.dispatch(updateCurrency({ currency: currencyCode }));

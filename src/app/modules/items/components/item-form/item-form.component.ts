@@ -78,6 +78,5 @@ export class ItemFormComponent {
       this.tagCheckboxes = this.tagCheckboxes.filter(tag => tag !== targetCheckBox);
       this.selectedTags = this.selectedTags.filter(tag => tag !== targetCheckBox.id);
     }
-    console.log(this.tagCount, targetCheckBox.id, this.selectedTags);
   }
 }

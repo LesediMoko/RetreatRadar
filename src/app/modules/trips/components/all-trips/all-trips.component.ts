@@ -23,12 +23,10 @@ export class AllTripsComponent {
   @Output() onTripDeleteClick = new EventEmitter<[ITrip | null, IItem[] | []] | null>();
 
   handleTripClick(trip: ITrip) {
-    console.log('reached parent all-tips-component', trip);
     this.onTripClick.emit(trip);
   }
 
   handleTripViewClick(trip: ITrip) {
-    console.log('reached parent all-tips-component', trip);
     this.onTripViewClick.emit(trip);
   }
   handleTripDeleteClick($event: [ITrip | null, IItem[] | []] | null) {

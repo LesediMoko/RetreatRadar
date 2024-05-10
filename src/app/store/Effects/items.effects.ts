@@ -22,7 +22,6 @@ export class ItemsEffects {
       switchMap(({ tripId }) =>
         this.db.fetchTripItems(tripId).pipe(
           map(items => {
-            console.log('loading items');
             const itemsData = items.docs.map(doc => {
               const docData = doc.data() as IItem;
               return { ...docData, id: doc.id };
@@ -63,7 +62,6 @@ export class ItemsEffects {
       switchMap(({ currencyFrom, currencyTo }) =>
         this.api.getConversionRate(currencyFrom, currencyTo).pipe(
           map((apiResponse: ICurrencyExchangeAPIResponse) => {
-            console.log('apiResponse', apiResponse);
             const rate = apiResponse.data[currencyTo].value;
             return ItemsActions.fetchConversionRateSuccess({ rate: rate });
           }),

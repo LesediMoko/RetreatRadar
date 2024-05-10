@@ -20,7 +20,5 @@ export class TripDetailsComponent {
   @Input() tripDuration: number | null = null;
   @Input() groupedItems: GroupedItem[] | null = null;
   @Input() totalCost: number | null = null;
-  constructor() {
-    console.log(this.groupedItems);
-  }
+  constructor() {}
 }

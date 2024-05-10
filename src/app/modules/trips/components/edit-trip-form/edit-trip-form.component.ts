@@ -34,22 +34,12 @@ export class EditTripFormComponent {
       startDate: this.startDateFormControl,
       endDate: this.endDateFormControl,
     });
-    console.log(this.viewingTrip, this.editTripForm.value);
   }
 
   onUpdateClick(): void {
     if (!this.tripTitleFormControl.value) return;
 
     this.editTrip.emit({
-      title: this.tripTitleFormControl.value,
-      startDate: Timestamp.fromDate(new Date(this.startDateFormControl.value)),
-      endDate: Timestamp.fromDate(new Date(this.endDateFormControl.value)),
-      uid: this.userId ?? '',
-      id: this.viewingTrip?.id ?? '',
-    });
-    console.log(this.editTripForm.value);
-    console.log(this.viewingTrip);
-    console.log({
       title: this.tripTitleFormControl.value,
       startDate: Timestamp.fromDate(new Date(this.startDateFormControl.value)),
       endDate: Timestamp.fromDate(new Date(this.endDateFormControl.value)),

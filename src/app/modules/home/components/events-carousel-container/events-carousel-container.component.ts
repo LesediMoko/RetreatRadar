@@ -26,7 +26,6 @@ export class EventsCarouselContainerComponent {
   }
 
   onClickEventItem(event: IEventItem) {
-    console.log('event', event);
     this.store.dispatch(setSelectedEvent({ event }));
     this.router.navigate([`/app/event-details/${event.id}`]);
   }

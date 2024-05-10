@@ -24,14 +24,12 @@ export class AllTripsContainerComponent {
   selectCurrency$ = this.itemStore.select(selectChosenCurrency);
 
   onClickSelectTrip(event: ITrip | null) {
-    console.log('reached grandparent container', event);
     if (!event) return;
     this.tripStore.dispatch(selectTrip({ trip: event }));
     this.itemStore.dispatch(setSelectedTripId({ tripId: event.id }));
   }
 
   onClickViewTrip(event: ITrip | null) {
-    console.log('reached grandparent container', event);
     if (!event) return;
     this.tripStore.dispatch(viewTrip({ trip: event }));
     this.itemStore.dispatch(setViewingTripId({ tripId: event.id }));
@@ -41,7 +39,6 @@ export class AllTripsContainerComponent {
   onClickDeleteTrip(event: [ITrip | null, IItem[] | []] | null) {
     if (!event) return;
     if (!event[0]) return;
-    console.log(event);
     const filteredItems = event[1].filter(item => item.tripId !== event[0]?.id);
     for (const item of filteredItems) {
       this.itemStore.dispatch(deleteItem({ id: item.id }));

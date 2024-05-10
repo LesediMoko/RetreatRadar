@@ -33,7 +33,6 @@ export class AllTripsCardItemComponent {
   deleteItem() {
     if (this.tripItem) {
       this.itemStore.dispatch(setSelectedItem({ item: this.tripItem }));
-      console.log(this.tripItem);
       this.itemStore.dispatch(deleteItem({ id: this.tripItem.id }));
     }
   }

@@ -37,7 +37,6 @@ export class TripPanelContainerComponent {
 
   selectClickedDay($event: string | null) {
     if (!$event) return;
-    console.log('day clicked:', $event);
     this.itemStore.dispatch(selectTripPanelDay({ day: $event }));
   }
 }
