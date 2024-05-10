@@ -13,4 +13,8 @@ export const eventsReducer = createReducer(
     ...state,
     events,
   })),
+  on(EventsActions.setSelectedEvent, (state, { event }) => ({
+    ...state,
+    selectedEvent: event,
+  })),
 );
