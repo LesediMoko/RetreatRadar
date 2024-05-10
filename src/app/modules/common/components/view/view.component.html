@@ -29,12 +29,8 @@
             <form method="dialog">
               <button class="btn btn-ghost text-vermilion-300 -ml-4 text-lg">Cancel</button>
             </form>
-            <app-item-form />
-            <div class="modal-action">
-              <form method="dialog" class="flex flex-row justify-between">
-                <button class="btn place-self-start">Save</button>
-              </form>
-            </div>
+            <app-item-form-container />
+            
           </div>
         </dialog>
 
@@ -48,15 +44,21 @@
             <li>
               <a class="justify-between"> Profile </a>
             </li>
-            <li><a>Settings</a></li>
-            <li><a>Logout</a></li>
+            <li><select class="select w-full max-w-xs" (change)="onCurrencyChange.emit($event)">
+                <option disabled selected>Pick Currency</option>
+                <option>Currency: ZAR</option>
+                <option>Currency: USD</option>
+                <option>Currency: GBP</option>
+              </select>
+            </li>
+            <li><a (click)="onClickLogout.emit()">Logout</a></li>
           </ul>
         </div>
       </div>
     </div>
     <router-outlet></router-outlet>
 
-    <div class="btm-nav bg-midnight_green-800 h-20 mt-5 z-10 overflow-y-hidden">
+    <div class="btm-nav bg-midnight_green-800 h-20 mt-20 z-10 overflow-y-hidden">
       <a routerLink="/app/home">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -88,9 +90,9 @@
 
   <div class="drawer-side -mt-8 h-full">
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class="p-4 w-80 h-full bg-ivory-500 mt-24 fixed overflow-y-scroll">
+    <div class="p-4 w-[95] h-full bg-ivory-500 mt-24 fixed overflow-y-scroll">
       <div class="overflow-y-scroll">
-        <app-trip-panel />
+        <app-trip-panel-container />
       </div>
     </div>
   </div>
