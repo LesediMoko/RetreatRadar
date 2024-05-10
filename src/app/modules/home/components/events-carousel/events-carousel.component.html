@@ -5,7 +5,7 @@
 @if (events.length > 0) {
   <div class="carousel rounded-box flex flex-row overflow-x-scroll gap-4">
     @for (eventItem of events; track eventItem.id) {
-      <div
+      <div (click)="onClick.emit(eventItem)"
         class="carousel-item w-2/3 h-80 rounded-2xl bg-center bg-cover cursor-pointer"
         style="background-image: url({{eventItem.photo}})"
       >
