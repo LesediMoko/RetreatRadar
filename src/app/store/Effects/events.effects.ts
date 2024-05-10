@@ -20,7 +20,10 @@ export class EventsEffects {
       switchMap(() =>
         this.db.fetchAllEvents().pipe(
           map(events => {
-            const eventsData = events.docs.map(doc => doc.data() as IEventItem);
+            const eventsData = events.docs.map(doc => {
+              const docData = doc.data() as IEventItem;
+              return { ...docData, id: doc.id };
+            });
             return EventsActions.loadEventsSuccess({ events: eventsData });
           }),
           catchError(error => {
