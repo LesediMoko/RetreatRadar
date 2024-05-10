@@ -56,4 +56,10 @@ export const userReducer = createReducer(
     ...state,
     currentUserProfile: profile,
   })),
+  on(UserActions.logout, state => ({
+    ...state,
+    isAuthenticated: false,
+    uid: null,
+    currentUserProfile: undefined,
+  })),
 );
