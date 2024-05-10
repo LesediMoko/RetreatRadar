@@ -1,0 +1,41 @@
+<div class="min-h-screen h-auto flex flex-col bg-ivory-500 gap-10 overflow-y-scroll">
+    <section class="mt-4 mx-4">
+    <div class="flex flex-row justify-between">
+        <div class="flex flex-col">
+            <p class="text-xl">{{trip?.title}} </p>
+            <p class="text-md">{{tripDuration}} days trip / {{ trip?.startDate?.seconds| FirestoreTimestamp: trip?.startDate?.nanoseconds | date:'MMM dd' }}  - {{ trip?.endDate?.seconds| FirestoreTimestamp: trip?.endDate?.nanoseconds | date:'MMM dd' }} </p>
+        </div>
+        
+        
+   
+        
+    </div>
+    <div class="mt-4">
+        <p class="text-lg">Total Cost: {{totalCost}}</p>
+    </div>
+    <div class="mt-4 -mb-4">
+        <button class="btn btn-outline flex flex-row gap3" onclick="my_modal_trip.showModal()">
+            <ng-icon name="ionPencil" size="1.5rem"></ng-icon>
+            <p class="text-lg font-semibold cursor-pointer">Edit</p>
+        </button>
+        <dialog id="my_modal_trip" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box bg-midnight_green-900 max-h-[75%]">
+              <form method="dialog">
+                <button class="btn btn-ghost text-vermilion-300 -ml-4 text-lg">Cancel</button>
+              </form>
+              <app-edit-trip-form-container />
+               
+            </div>
+        </dialog>
+    </div>
+    </section>
+    
+    <hr/>
+ 
+    <main class="flex flex-col gap-8 mx-4">
+        <p class="text-2xl">Items</p>
+        @for (groupedItem of groupedItems; track groupedItem.day) {
+            <app-viewing-trip-day [groupedItem]="groupedItem"></app-viewing-trip-day>
+        }
+    </main>
+</div>
