@@ -14,6 +14,7 @@ import {
   retreatRadarStoreTripsFeatureKey,
   retreatRadarStoreUserFeatureKey,
   retreatRadarStoreEventsFeatureKey,
+  retreatRadarStoreItemsFeatureKey,
 } from './store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { userReducer } from './store/Reducers/user.reducer';
@@ -24,6 +25,10 @@ import { FormsModule } from '@angular/forms';
 import { tripsReducer } from './store/Reducers/trips.reducer';
 import { eventsReducer } from './store/Reducers/events.reducer';
 import { EventsEffects } from './store/Effects/events.effects';
+import { TripsEffects } from './store/Effects/trips.effects';
+import { ItemsEffects } from './store/Effects/items.effects';
+import { itemsReducer } from './store/Reducers/items.reducer';
+import { storageSyncMetaReducer } from 'ngrx-store-persist';
 
 registerLocaleData(en);
 
@@ -48,11 +53,12 @@ export const appConfig: ApplicationConfig = {
     ),
     importProvidersFrom(provideAuth(() => getAuth())),
     importProvidersFrom(provideFirestore(() => getFirestore())),
-    provideStore(),
+    provideStore([], { runtimeChecks: {}, metaReducers: [storageSyncMetaReducer] }),
     provideState({ name: retreatRadarStoreUserFeatureKey, reducer: userReducer }),
     provideState({ name: retreatRadarStoreTripsFeatureKey, reducer: tripsReducer }),
     provideState({ name: retreatRadarStoreEventsFeatureKey, reducer: eventsReducer }),
-    provideEffects(UsersEffects, EventsEffects),
+    provideState({ name: retreatRadarStoreItemsFeatureKey, reducer: itemsReducer }),
+    provideEffects(UsersEffects, EventsEffects, TripsEffects, ItemsEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideNzI18n(en_US),
     importProvidersFrom(FormsModule),

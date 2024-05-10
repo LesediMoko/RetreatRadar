@@ -1,1 +1,1 @@
-<p>trip-panel-container works!</p>
+<app-trip-panel [selectedTrip]="(selectedTrip$ | async)" [selectedTripItems]="(selectedTripItems$ | async) ?? []" [selectedTripDays]="(selectedTripDays$ | async )?? []" (dayClick)="selectClickedDay($event)" [selectedTripItemsByDay]="(selectedTripItemsByDay$ | async) ?? []" [selectedTripDay]="(selectedTripDay$ | async)" [totalCostSelectedTrip]="(selectTotalCostSelectedTrip$ | async) ?? 0" [selectedCurrency]="(selectCurrency$ | async) ?? 'ZAR' "></app-trip-panel>

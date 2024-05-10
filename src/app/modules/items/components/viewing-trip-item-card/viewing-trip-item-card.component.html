@@ -1,0 +1,27 @@
+<div class="card w-56 bg-ivory-500 place-self-center shadow-xl h-80">
+    <div class="card-body flex flex-col flex-wrap  gap-4">
+      
+            <p class="text-md font-semibold">{{item?.name}}</p>
+        
+
+        <div class="flex flex-row gap-2">
+            <ng-icon name="ionTimeOutline" class="place-self-center pr-4" size="1rem"></ng-icon>
+            <div class="flex flex-col">
+                <p class="text-sm font-medium">Time</p>
+                <p class="text-xs">{{ item?.startTime?.seconds| FirestoreTimestamp: item?.startTime?.nanoseconds | date:'HH:mm' }}-{{ item?.endTime?.seconds| FirestoreTimestamp: item?.endTime?.nanoseconds | date:'HH:mm' }}</p>
+            </div>
+        </div>
+        
+        
+        <div class="flex flex-row gap-2">
+            <ng-icon name="ionCashOutline" class="place-self-center pr-4" size="1rem"></ng-icon>
+            <div class="flex flex-col">
+                <p class="text-sm font-medium">Cost</p>
+                <p class="text-xs">{{item?.cost}}</p>
+            </div>
+        </div>
+        
+        </div>
+       
+   
+  </div>

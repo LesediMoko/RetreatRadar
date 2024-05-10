@@ -4,6 +4,7 @@ import { DbService } from '../../services/db.service';
 import { EMPTY, Observable, catchError, concatMap, exhaustMap, from, map, of, switchMap } from 'rxjs';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import * as UserActions from '../Actions/user.actions';
+import * as TripActions from '../Actions/trips.actions';
 import { IUser } from '../../modules/common/types/app-types';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { profileConverter } from '../../modules/utils/model-converters';
@@ -106,9 +107,9 @@ export class UsersEffects {
             const actions = [
               UserActions.loginSuccess({ uid: user.user.uid }),
               UserActions.fetchProfile({ uid: user.user.uid }),
+              TripActions.loadTrips({ uid: user.user.uid }),
             ];
             this.router.navigate(['/app/home']);
-            console.log(user.user.uid);
             return from(actions);
           }),
           catchError(error => {

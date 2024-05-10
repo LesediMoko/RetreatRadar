@@ -1,0 +1,56 @@
+<form class="w-full flex flex-col gap-6 rounded-md" [formGroup]="editTripForm">
+    <label class="form-control w-full max-w-xs">
+      <div class="label">
+        <span class="label-text text-xl font-medium text-neutral-950">Title</span>
+      </div>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="input input-bordered w-full max-w-xs bg-midnight_green-800 placeholder:text-neutral-700"
+        [formControl]="tripTitleFormControl"
+      />
+    </label>
+    <ng-container *ngIf="tripTitleFormControl.invalid && (tripTitleFormControl.dirty || tripTitleFormControl.touched)">
+        <p class="text-sm text-vermilion-400" *ngIf="tripTitleFormControl.hasError('required')">
+          Title is <strong>required</strong>
+        </p>
+        <p class="text-sm text-vermilion-400" *ngIf="tripTitleFormControl.hasError('minlength')">
+          Title is <strong>too short</strong>
+        </p>
+      </ng-container>
+  
+    <label class="form-control w-full max-w-xs">
+      <div class="label">
+        <span class="label-text text-xl font-medium text-neutral-950">Start at</span>
+      </div>
+      <input
+        type="datetime-local"
+        id="event-time"
+        name="meeting-time"
+        value="2018-05-02T06:30"
+        min="2018-05-02T06:30"
+        class="bg-midnight_green-800 p-4 rounded-md text-md font-semibold"
+        [formControl]="startDateFormControl"
+      />
+    </label>
+    <label class="form-control w-full max-w-xs">
+      <div class="label">
+        <span class="label-text text-xl font-medium text-neutral-950">End at</span>
+      </div>
+      <input
+        type="datetime-local"
+        id="event-time"
+        name="meeting-time"
+        value="2018-05-02T06:30"
+        min="2018-05-02T06:30"
+        class="bg-midnight_green-800 p-4 rounded-md text-md font-semibold"
+        [formControl]="endDateFormControl"
+      />
+    </label>
+    <div class="modal-action">
+        <form method="dialog" class="flex flex-row justify-between">
+          <button class="btn place-self-start" type="submit" [disabled]="!editTripForm.valid" (click)="onUpdateClick()">Update</button>
+        </form>
+    </div>
+  </form>
+  

@@ -5,6 +5,7 @@ import { AppState } from './Types/states';
 export const retreatRadarStoreUserFeatureKey = 'retreatRadarUserStore';
 export const retreatRadarStoreTripsFeatureKey = 'retreatRadarTripsStore';
 export const retreatRadarStoreEventsFeatureKey = 'retreatRadarEventsStore';
+export const retreatRadarStoreItemsFeatureKey = 'retreatRadarItemsStore';
 
 const initialState = {};
 

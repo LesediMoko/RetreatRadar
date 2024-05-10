@@ -3,9 +3,11 @@ import { EventsCarouselComponent } from '../events-carousel/events-carousel.comp
 import { EventsState } from '../../../../store/Types/states';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { loadEvents } from '../../../../store/Actions/events.actions';
+import { loadEvents, setSelectedEvent } from '../../../../store/Actions/events.actions';
 import { selectEvents } from '../../../../store/Selectors/events.selector';
 import { AsyncPipe } from '@angular/common';
+import { IEventItem } from '../../../common/types/app-types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-carousel-container',
@@ -16,7 +18,15 @@ import { AsyncPipe } from '@angular/common';
 })
 export class EventsCarouselContainerComponent {
   eventsInfoList$ = this.store.select(selectEvents);
-  constructor(private store: Store<EventsState>) {
+  constructor(
+    private store: Store<EventsState>,
+    private router: Router,
+  ) {
     this.store.dispatch(loadEvents());
+  }
+
+  onClickEventItem(event: IEventItem) {
+    this.store.dispatch(setSelectedEvent({ event }));
+    this.router.navigate([`/app/event-details/${event.id}`]);
   }
 }

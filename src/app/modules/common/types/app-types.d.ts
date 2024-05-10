@@ -1,3 +1,4 @@
+import { Timestamp } from '@angular/fire/firestore';
 export interface IUser {
   name: string;
   surname: string;
@@ -7,10 +8,10 @@ export interface IUser {
 
 export interface ITrip {
   id: string;
-  name: string;
-  userId: string;
-  startDate: Date;
-  endDate: Date;
+  title: string;
+  uid: string;
+  startDate: { seconds: number; nanoseconds: number };
+  endDate: { seconds: number; nanoseconds: number };
 }
 
 export interface IItem {
@@ -18,8 +19,8 @@ export interface IItem {
   tripId: string;
   name: string;
   tags: string[];
-  startTime: Date;
-  endTime: Date;
+  startTime: { seconds: number; nanoseconds: number };
+  endTime: { seconds: number; nanoseconds: number };
   cost: number;
   currency: string;
 }
@@ -49,14 +50,64 @@ export interface UsersCollection {
 
 export interface IEventItem {
   id: string;
-  attendees: string[];
+  attendees: { avatar: string; id: string }[];
   cost: number;
   currency: string;
-  endTime: Date;
+  endTime: { seconds: number; nanoseconds: number };
   name: string;
-  startTime: Date;
+  startTime: { seconds: number; nanoseconds: number };
   tags: string[];
   description: string;
   location: string;
   photo: string;
+}
+
+interface IFSTimestamp {
+  seconds: number;
+  nanoseconds: number;
+}
+
+interface ItemForGroup {
+  startDateJS: string;
+  id: string;
+  tripId: string;
+  name: string;
+  tags: string[];
+  startTime: IFSTimestamp;
+  endTime: IFSTimestamp;
+  cost: number;
+  currency: string;
+}
+
+export interface GroupedItem {
+  day: string;
+  items: ItemForGroup[];
+}
+
+export interface IAddTripForm {
+  title: string;
+  startDate: Timestamp;
+  endDate: Timestamp;
+  uid: string;
+}
+
+export interface IAddItemForm {
+  tripId: string;
+  name: string;
+  tags: string[];
+  startTime: Timestamp;
+  endTime: Timestamp;
+  cost: number;
+  currency: string;
+}
+
+interface ICurrencyData {
+  code: string;
+  value: number;
+}
+export interface ICurrencyExchangeAPIResponse {
+  meta: {
+    last_updated_at: string;
+  };
+  data: { [key: string]: ICurrencyData };
 }

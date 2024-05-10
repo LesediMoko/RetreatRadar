@@ -1,1 +1,1 @@
-<app-view [userProfile]="(userProfileInfo$ | async) ?? null"></app-view>
+<app-view [userProfile]="(userProfileInfo$ | async) ?? null" (onClickLogout)="logoutUser()" (onCurrencyChange)="chooseCurrency($event)" [currentCurrency]="(selectedCurrency$ | async) ?? 'ZAR'"></app-view>

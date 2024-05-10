@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IEventItem } from '../../../common/types/app-types';
 
 @Component({
@@ -10,4 +10,5 @@ import { IEventItem } from '../../../common/types/app-types';
 })
 export class EventsCarouselComponent {
   @Input() events: IEventItem[] = [];
+  @Output() onClick = new EventEmitter<IEventItem>();
 }

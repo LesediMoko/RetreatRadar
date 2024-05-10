@@ -1,0 +1,43 @@
+@if ( !(selectedTrip?.id == trip?.id) ) {
+
+<div class="rounded-xl flex flex-col gap-4 mx-4 my-6 border-solid border border-neutral-300 p-4 shadow-md bg-ivory-500">
+    <div class="flex flex-row justify-between">
+        <p class="text-xl font-black">{{trip?.title}}</p>
+        <div class="flex flex-row gap-3">
+            <a class="cursor-pointer text-caribbean_current-700 font-semibold" (click)="onTripClick.emit(trip)">select</a>
+            <a (click)="onTripViewClick.emit(trip)" class="cursor-pointer">view</a>
+            <p class="cursor-pointer">delete</p>
+
+        </div>
+    </div>
+    @for (tripItem of tripItems; track tripItem.id) {
+    @if (tripItem.tripId == trip?.id) {
+    <app-all-trips-card-item [tripItem]="tripItem" [selectedCurrency]="selectedCurrencyCard"></app-all-trips-card-item>
+    <hr/>
+    }
+    
+    }
+</div>
+}
+@else {
+    <div class="rounded-xl flex flex-col gap-4 mx-4 my-6 border-double border-8  border-ivory-100 p-4 shadow-md bg-ivory-500">
+        <div class="flex flex-row justify-between">
+            <p class="text-xl font-black">{{trip?.title}}</p>
+            <div class="flex flex-row gap-3">
+                
+                <a (click)="onTripViewClick.emit(trip)" class="cursor-pointer">view</a>
+                <p class="cursor-pointer" (click)="onTripDeleteClick.emit([trip,tripItems])">delete</p>
+    
+            </div>
+        </div>
+        @for (tripItem of tripItems; track tripItem.id) {
+        @if (tripItem.tripId == trip?.id) {
+        <app-all-trips-card-item [tripItem]="tripItem" [selectedCurrency]="selectedCurrencyCard"></app-all-trips-card-item>
+        <hr/>
+        }
+        
+        }
+    </div>
+}
+
+

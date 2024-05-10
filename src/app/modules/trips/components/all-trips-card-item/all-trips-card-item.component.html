@@ -1,0 +1,13 @@
+<div class="flex flex-row justify-between">
+<div class="flex flex-row m-4 gap-4">
+    <ng-icon name="ionCalendarSharp" size="1.3rem" class="place-self-center pr-4"></ng-icon>
+    <div class="flex flex-col">
+        <p class="text-lg font-bold">{{tripItem?.name}}</p>
+        <p class="text-md font-medium text-neutral-400">{{ tripItem?.startTime?.seconds| FirestoreTimestamp: tripItem?.startTime?.nanoseconds | date:'MMM dd' }} • {{tripItem?.tags?.join(' | ')}} • {{tripItem?.cost | currency: selectedCurrency : "symbol-narrow"}}</p>
+    </div>
+</div>
+<div class="place-self-center pr-4 justify-self-end mr-10" (click)="deleteItem()">
+    <ng-icon name="ionTrashOutline" size="1.3rem" ></ng-icon>
+</div>
+
+</div>

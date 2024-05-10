@@ -1,1 +1,1 @@
-<app-events-carousel [events]="(eventsInfoList$ | async) ?? []"></app-events-carousel>
+<app-events-carousel [events]="(eventsInfoList$ | async) ?? []" (onClick)="onClickEventItem($event)"></app-events-carousel>

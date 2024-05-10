@@ -7,6 +7,7 @@
       type="text"
       placeholder="Type here"
       class="input input-bordered w-full max-w-xs bg-midnight_green-800 placeholder:text-neutral-700"
+      [formControl]="itemNameFormControl"
     />
   </label>
 
@@ -15,9 +16,10 @@
       <span class="label-text text-xl font-medium text-neutral-950">Cost</span>
     </div>
     <input
-      type="text"
+      type="number"
       placeholder="Type here"
       class="input input-bordered w-full max-w-xs bg-midnight_green-800 placeholder:text-neutral-700"
+      [formControl]="costFormControl"
     />
   </label>
 
@@ -25,8 +27,8 @@
     <div class="label">
       <span class="label-text text-xl font-medium text-neutral-950">Currency</span>
     </div>
-    <select class="select w-full max-w-xs bg-midnight_green-800">
-      <option>ZAR</option>
+    <select class="select w-full max-w-xs bg-midnight_green-800" [formControl]="currencyFormControl"> 
+      <option [defaultSelected]="true">ZAR</option>
       <option>USD</option>
       <option>GBP</option>
     </select>
@@ -43,6 +45,7 @@
       value="2018-05-02T06:30"
       min="2018-05-02T06:30"
       class="bg-midnight_green-800 p-4 rounded-md text-md font-semibold"
+      [formControl]="startTimeFormControl"
     />
   </label>
   <label class="form-control w-full max-w-xs">
@@ -56,109 +59,23 @@
       value="2018-05-02T06:30"
       min="2018-05-02T06:30"
       class="bg-midnight_green-800 p-4 rounded-md text-md font-semibold"
+      [formControl]="endTimeFormControl"
     />
   </label>
-  <label class="form-control w-full max-w-xs">
-    <div class="label">
-      <span class="label-text text-xl font-medium text-neutral-950">Location</span>
+  <div class="label">
+    <span class="label-text text-xl font-medium text-neutral-950">Select at least 1 tag (max 3)</span>
+  </div>
+  <div class="flex flex-row flex-wrap gap-4">
+  @for (tag of tags; track tag) {
+    <div class="">
+      <input type="checkbox" name="" id="{{ tag }}" class="hidden peer" (click)="ValidateTags($event)" />
+      <label class="badge badge-outline h-10 peer-checked:bg-midnight_green-700" for="{{ tag }}">{{ tag }}</label>
     </div>
-    <div class="flex flex-row gap-2">
-      <input
-        type="number"
-        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">°</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-800"
-      />
-      <p class="text-xl font-medium text-neutral-950">'</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-800"
-      />
-      <p class="text-xl font-medium text-neutral-950">''</p>
-      <select class="w-6 bg-midnight_green-800">
-        <option class="bg-caribbean_current-800">N</option>
-        <option>S</option>
-      </select>
+    }
     </div>
-    <div class="flex flex-row gap-2 mt-2">
-      <input
-        type="number"
-        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">°</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">'</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">''</p>
-      <select class="w-6 bg-midnight_green-800">
-        <option>E</option>
-        <option>W</option>
-      </select>
-    </div>
-  </label>
-  <label class="form-control w-full max-w-xs">
-    <div class="label">
-      <span class="label-text text-xl font-medium text-neutral-950">End Location</span>
-      <span class="label-text text-md text-neutral-500 font-medium">(optional)</span>
-    </div>
-    <div class="flex flex-row gap-2">
-      <input
-        type="number"
-        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">°</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">'</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">''</p>
-      <select class="w-6 bg-midnight_green-800">
-        <option>N</option>
-        <option>S</option>
-      </select>
-    </div>
-    <div class="flex flex-row gap-2 mt-2">
-      <input
-        type="number"
-        class="text-lg font-semibold text-center p-0 input input-bordered w-6 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">°</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">'</p>
-      <input
-        type="text"
-        inputmode="numeric"
-        class="input input-bordered w-8 bg-midnight_green-800 placeholder:text-neutral-700"
-      />
-      <p class="text-xl font-medium text-neutral-950">''</p>
-      <select class="w-6 bg-midnight_green-800">
-        <option>E</option>
-        <option>W</option>
-      </select>
-    </div>
-  </label>
+  <div class="modal-action">
+    <form method="dialog" class="flex flex-row justify-between">
+      <button class="btn place-self-start" type="submit" [disabled]="!addItemForm.valid || selectedTags.length == 0" (click)="onSaveClick()">Save</button>
+    </form>
+</div>
 </form>
