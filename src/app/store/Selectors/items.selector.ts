@@ -6,19 +6,32 @@ import { convertFSTimestampToJSDate, getTripPanelMonthDay } from '../../modules/
 
 export const selectItemsFeature = createFeatureSelector<ItineraryItemsState>(retreatRadarStoreItemsFeatureKey);
 
-export const selectItems = createSelector(selectItemsFeature, state => state.items);
+export const selectItems = createSelector(selectItemsFeature, state => {
+  const items = state.items;
+  for (const item of items) {
+    item.cost = item.cost * state.conversionRate;
+  }
+  return items;
+});
 
 export const selectSelectedItem = createSelector(selectItemsFeature, state => state.selectedItem);
 
 export const selectSelectedTripId = createSelector(selectItemsFeature, state => state.selectedTripId);
 
-export const selectItemsBySelectedTripId = createSelector(selectItemsFeature, state =>
-  state.items.filter(item => item.tripId === state.selectedTripId),
-);
+export const selectItemsBySelectedTripId = createSelector(selectItemsFeature, state => {
+  const items = state.items.filter(item => item.tripId === state.selectedTripId);
+  for (const item of items) {
+    item.cost = item.cost * state.conversionRate;
+  }
+  return items;
+});
 
 export const selectSelectedItemsGroupedByDay = createSelector(selectItemsFeature, state => {
   console.log(state.selectedTripId);
   const items = state.items.filter(item => item.tripId === state.viewingTripId);
+  for (const item of items) {
+    item.cost = item.cost * state.conversionRate;
+  }
   const itemAndDayArray = items.map(item => {
     const startDateJS = convertFSTimestampToJSDate(item.startTime.seconds, item.startTime.nanoseconds).toDateString();
     return { ...item, startDateJS };
@@ -55,6 +68,9 @@ export const selectSelectedTripPanelDayItems = createSelector(selectItemsFeature
     const bDate = convertFSTimestampToJSDate(b.startTime.seconds, b.startTime.nanoseconds);
     return aDate.getTime() - bDate.getTime();
   });
+  for (const item of items) {
+    item.cost = item.cost * state.conversionRate;
+  }
   if (state.selectedTripPanelDay === 'All') return items;
   return items.filter(item => {
     const startDateJS = convertFSTimestampToJSDate(item.startTime.seconds, item.startTime.nanoseconds);
@@ -65,11 +81,11 @@ export const selectSelectedTripPanelDayItems = createSelector(selectItemsFeature
 
 export const selectTotalCostOfSelectedTrip = createSelector(selectItemsFeature, state => {
   const items = state.items.filter(item => item.tripId === state.selectedTripId);
-  return items.reduce((acc, item) => acc + item.cost, 0);
+  return items.reduce((acc, item) => acc + item.cost * state.conversionRate, 0);
 });
 export const selectTotalCostOfViewingTrip = createSelector(selectItemsFeature, state => {
   const items = state.items.filter(item => item.tripId === state.viewingTripId);
-  return items.reduce((acc, item) => acc + item.cost, 0);
+  return items.reduce((acc, item) => acc + item.cost * state.conversionRate, 0);
 });
 
 export const selectChosenCurrency = createSelector(selectItemsFeature, state => state.currentCurrency);
