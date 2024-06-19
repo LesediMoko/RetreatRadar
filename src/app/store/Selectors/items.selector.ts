@@ -32,6 +32,15 @@ export const selectItemsBySelectedTripId = createSelector(selectItemsFeature, st
   return items;
 });
 
+export const selectItemIdsBySelectedTripId = createSelector(selectItemsFeature, state => {
+  let items: IItem[] = [];
+  for (const item of state.items) {
+    if (item.tripId === state.selectedTripId) items.push({ ...item, cost: item.cost * state.conversionRate });
+  }
+  const itemIds = items.map(item => item.id);
+  return itemIds;
+});
+
 export const selectSelectedItemsGroupedByDay = createSelector(selectItemsFeature, state => {
   let items: IItem[] = [];
   for (const item of state.items) {
