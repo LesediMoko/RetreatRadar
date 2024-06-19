@@ -9,6 +9,7 @@ import {
 } from '../../../../store/Selectors/trips.selector';
 import { AsyncPipe } from '@angular/common';
 import {
+  selectChosenCurrency,
   selectSelectedItemsGroupedByDay,
   selectTotalCostOfViewingTrip,
 } from '../../../../store/Selectors/items.selector';
@@ -29,6 +30,7 @@ export class TripDetailsContainerComponent {
   selectedTrip$ = this.tripStore.select(selectViewingTrip);
   selectGroupedItems$ = this.itemStore.select(selectSelectedItemsGroupedByDay);
   totalCostViewingTrip$ = this.itemStore.select(selectTotalCostOfViewingTrip);
+  selectedCurrency$ = this.itemStore.select(selectChosenCurrency);
 
   constructor(
     private tripStore: Store<TripsState>,

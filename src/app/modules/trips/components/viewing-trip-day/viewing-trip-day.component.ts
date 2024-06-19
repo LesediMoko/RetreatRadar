@@ -11,4 +11,5 @@ import { ViewingTripItemCardComponent } from '../../../items/components/viewing-
 })
 export class ViewingTripDayComponent {
   @Input() groupedItem: GroupedItem | null = null;
+  @Input() selectedCurrency: string | null = null;
 }

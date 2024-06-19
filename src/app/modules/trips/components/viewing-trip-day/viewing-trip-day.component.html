@@ -6,7 +6,7 @@
     <div class="collapse-content flex flex-col gap-6 overflow-x-scroll"> 
         <div class="flex flex-row gap-3">
             @for (item of groupedItem?.items; track item.id) {
-                <app-viewing-trip-item-card [item]="item"></app-viewing-trip-item-card>
+                <app-viewing-trip-item-card [item]="item" [selectedCurrency]="selectedCurrency ?? 'ZAR'"></app-viewing-trip-item-card>
             }
         </div>
         <p class="place-self-center">View Calendar</p>
