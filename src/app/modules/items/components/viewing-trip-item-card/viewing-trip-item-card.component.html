@@ -17,7 +17,7 @@
             <ng-icon name="ionCashOutline" class="place-self-center pr-4" size="1rem"></ng-icon>
             <div class="flex flex-col">
                 <p class="text-sm font-medium">Cost</p>
-                <p class="text-xs">{{item?.cost}}</p>
+                <p class="text-xs">{{item?.cost | currency: selectedCurrency ?? "ZAR" : "symbol-narrow"}}</p>
             </div>
         </div>
         

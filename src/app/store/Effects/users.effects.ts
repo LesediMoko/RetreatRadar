@@ -32,7 +32,7 @@ export class UsersEffects {
               UserActions.registerSuccess({ uid: credentials.user.uid }),
               UserActions.saveProfile({ uid: credentials.user.uid, profile: action.userProfile }),
             ];
-
+            this.router.navigate(['/app/home']);
             return from(actions);
           }),
 
@@ -51,6 +51,7 @@ export class UsersEffects {
       exhaustMap(() =>
         this.db.googleRegister().pipe(
           map(credentials => {
+            this.router.navigate(['/app/home']);
             return UserActions.registerGoogleSuccess({ uid: credentials.user.uid });
           }),
           catchError(error => {
@@ -67,7 +68,10 @@ export class UsersEffects {
       ofType(UserActions.registerGit),
       exhaustMap(() =>
         this.db.gitRegister().pipe(
-          map(credentials => UserActions.registerGitSuccess({ uid: credentials.user.uid })),
+          map(credentials => {
+            this.router.navigate(['/app/home']);
+            return UserActions.registerGitSuccess({ uid: credentials.user.uid });
+          }),
           catchError(error => {
             this.nzNotify.error('Error', error.toString());
             return EMPTY;
@@ -131,6 +135,7 @@ export class UsersEffects {
               UserActions.loginGitSuccess({ uid: user.user.uid }),
               UserActions.fetchProfile({ uid: user.user.uid }),
             ];
+            this.router.navigate(['/app/home']);
             return from(actions);
           }),
           catchError(error => {
@@ -152,6 +157,7 @@ export class UsersEffects {
               UserActions.loginGoogleSuccess({ uid: user.user.uid }),
               UserActions.fetchProfile({ uid: user.user.uid }),
             ];
+            this.router.navigate(['/app/home']);
             return from(actions);
           }),
           catchError(error => {

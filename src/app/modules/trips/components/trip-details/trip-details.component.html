@@ -11,7 +11,7 @@
         
     </div>
     <div class="mt-4">
-        <p class="text-lg">Total Cost: {{totalCost}}</p>
+        <p class="text-lg">Total Cost: {{totalCost | currency: selectedCurrency! : "symbol-narrow"}}</p>
     </div>
     <div class="mt-4 -mb-4">
         <button class="btn btn-outline flex flex-row gap3" onclick="my_modal_trip.showModal()">
@@ -35,7 +35,7 @@
     <main class="flex flex-col gap-8 mx-4">
         <p class="text-2xl">Items</p>
         @for (groupedItem of groupedItems; track groupedItem.day) {
-            <app-viewing-trip-day [groupedItem]="groupedItem"></app-viewing-trip-day>
+            <app-viewing-trip-day [groupedItem]="groupedItem" [selectedCurrency]="selectedCurrency ?? 'ZAR'"></app-viewing-trip-day>
         }
     </main>
 </div>
