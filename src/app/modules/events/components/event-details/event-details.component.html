@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="card w-96 bg-ivory-500 place-self-center shadow-xl">
-        <figure><img src={{selectedEvent?.photo}} style="object-fit: cover;" alt="Shoes" /></figure>
+        <figure><img src={{selectedEvent?.photo}} style="object-fit: cover;" alt={{selectedEvent?.photo}} /></figure>
         <div class="card-body flex flex-row flex-wrap  gap-8">
             <div class="flex flex-col gap-8 justify-between w-1/2">
                 <div class="flex flex-row gap-4 ">
@@ -62,6 +62,30 @@
         </div>
 
         </div>
+        @if (selectedEvent && selectedEvent.id && selselectedTripItemsIds && !selselectedTripItemsIds.includes(selectedEvent.id)) {
+        <div class="place-self-center mb-5 place-items-center flex flex-col items-center">
+            <p class="text-md font-medium mb-2">Click below to add event</p>
+        <ng-icon
+          name="tablerCalendarPlus"
+          class="mr-2 mb-5 "
+          size="2.4rem"
+          strokeWidth="0.1rem"
+          (click)="onSaveClick()"
+        ></ng-icon>
+        </div>
+        }
+        @else {
+            <div class="place-self-center mb-5 place-items-center flex flex-col items-center">
+                <p class="text-md font-medium mb-2">Click below to remove event</p>
+            <ng-icon
+              name="tablerCalendarMinus"
+              class="mr-2 mb-5 "
+              size="2.4rem"
+              strokeWidth="0.1rem"
+              (click)="onRemoveClick()"
+            ></ng-icon>
+            </div>
+        }
       </div>
 
 
